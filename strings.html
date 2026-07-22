@@ -1,0 +1,249 @@
+<!-- =============================================================== -->
+<!-- strings.html                                                     -->
+<!-- Author: Larry Douglas                                           -->
+<!-- Course: CSC102 - Introductory Programming                        -->
+<!-- Purpose: Ask the user for their name and zip code, check the     -->
+<!--          input, and reveal a secret message only if it is valid. -->
+<!-- =============================================================== -->
+
+<!-- Tells the browser this is a modern HTML5 document. -->
+<!DOCTYPE html>
+<!-- The root tag of the page; "en" says the content is in English. -->
+<html lang="en">
+
+<!-- The head holds settings and styling the user does not see directly. -->
+<head>
+  <!-- Sets the character set so letters and symbols show up correctly. -->
+  <meta charset="UTF-8" />
+  <!-- Makes the page scale nicely on phones, tablets, and laptops. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- The text shown on the browser tab. -->
+  <title>Secret Message Vault</title>
+
+  <!-- Loads a clean font from Google Fonts (creative element: fonts). -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- All of the page styling (colors, fonts, layout) lives in here. -->
+  <style>
+    /* Set up the whole-page background and center everything on it. */
+    body {
+      /* A navy gradient background (creative element: background color). */
+      background: radial-gradient(circle at top, #123259 0%, #0a1e38 55%, #06121f 100%);
+      /* Use the Google font, with safe fallbacks if it cannot load. */
+      font-family: "Poppins", Arial, sans-serif;
+      /* Fill the full height of the screen. */
+      min-height: 100vh;
+      /* Remove the browser's default margin. */
+      margin: 0;
+      /* Use flexbox to center the card horizontally and vertically. */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* Add breathing room so the card never touches the edges. */
+      padding: 24px;
+      /* Make normal text a light color so it reads on the dark background. */
+      color: #e8edf5;
+    }
+
+    /* The card is the gold-bordered panel that holds the whole app. */
+    .card {
+      /* A slightly lighter navy so the card stands out from the background. */
+      background: #0f2846;
+      /* The signature gold border. */
+      border: 2px solid #d4af37;
+      /* Rounded corners for a friendlier look. */
+      border-radius: 16px;
+      /* Space inside the card. */
+      padding: 36px 32px;
+      /* Keep the card a comfortable reading width. */
+      width: 100%;
+      max-width: 420px;
+      /* A soft gold glow and drop shadow for depth. */
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.25), 0 18px 40px rgba(0, 0, 0, 0.45);
+      /* Center the heading and icon text. */
+      text-align: center;
+    }
+
+    /* The lock icon at the top (creative element: image/icon). */
+    .lock {
+      /* Make the emoji large so it reads as the signature element. */
+      font-size: 54px;
+      /* A little space below it. */
+      margin-bottom: 8px;
+    }
+
+    /* The main heading of the app. */
+    h1 {
+      /* Gold heading to match the brand. */
+      color: #d4af37;
+      /* Tighten the space above and below. */
+      margin: 0 0 6px 0;
+      /* A clear, confident heading size. */
+      font-size: 26px;
+    }
+
+    /* The short instruction line under the heading. */
+    .subtitle {
+      /* A softer, muted color so it sits below the heading. */
+      color: #9fb3cc;
+      /* Space before the form starts. */
+      margin: 0 0 24px 0;
+      font-size: 14px;
+    }
+
+    /* Each label that names an input box. */
+    label {
+      /* Put labels on their own line, left-aligned above each box. */
+      display: block;
+      text-align: left;
+      /* Small gap between the label and its input. */
+      margin: 14px 0 6px 0;
+      /* Light, easy-to-read label text. */
+      color: #cdd9e8;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* The text boxes where the user types. */
+    input {
+      /* Make each box fill the width of the card. */
+      width: 100%;
+      /* Comfortable padding so it is easy to tap and type in. */
+      padding: 12px 14px;
+      /* Remove the default box sizing surprise (padding stays inside width). */
+      box-sizing: border-box;
+      /* A dark field that fits the navy theme. */
+      background: #0a1c33;
+      /* A thin navy border that turns gold when focused (see below). */
+      border: 1px solid #2c476b;
+      /* Rounded corners to match the card. */
+      border-radius: 8px;
+      /* Light text as the user types. */
+      color: #ffffff;
+      /* Use the same font as the rest of the page. */
+      font-family: inherit;
+      font-size: 15px;
+    }
+
+    /* When a text box is clicked into, highlight it with the gold accent. */
+    input:focus {
+      /* Remove the default browser outline. */
+      outline: none;
+      /* Gold border to show which box is active (good UX + accessibility). */
+      border-color: #d4af37;
+      /* A soft gold glow around the active box. */
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25);
+    }
+
+    /* The single button that submits all the inputs at once. */
+    button {
+      /* Space above the button. */
+      margin-top: 22px;
+      /* Make the button as wide as the card. */
+      width: 100%;
+      /* Big, easy-to-click padding. */
+      padding: 13px;
+      /* Gold button with navy text (brand colors). */
+      background: #d4af37;
+      color: #0a1e38;
+      /* No border; the fill color is enough. */
+      border: none;
+      /* Rounded to match everything else. */
+      border-radius: 8px;
+      /* Bold, readable button text. */
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      /* Show a hand cursor so it clearly looks clickable. */
+      cursor: pointer;
+      /* Smoothly animate the hover effect. */
+      transition: transform 0.08s ease, box-shadow 0.15s ease;
+    }
+
+    /* Lift the button slightly on hover (small, tasteful motion). */
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(212, 175, 55, 0.35);
+    }
+
+    /* The area where warnings or the secret message appear. */
+    .output {
+      /* Space above the message area. */
+      margin-top: 20px;
+      /* Padding so a message has room to breathe. */
+      padding: 0;
+      /* Comfortable line spacing for reading. */
+      line-height: 1.5;
+      font-size: 15px;
+    }
+
+    /* Styling used when the message is a warning (invalid input). */
+    .output.warning {
+      /* A warm red-gold so problems stand out without alarm. */
+      color: #ffb4a2;
+      background: rgba(255, 90, 70, 0.12);
+      border: 1px solid rgba(255, 120, 100, 0.4);
+      border-radius: 8px;
+      padding: 14px;
+    }
+
+    /* Styling used when the message is the unlocked secret (valid input). */
+    .output.success {
+      /* Gold text on a soft gold panel to celebrate success. */
+      color: #ffe9a8;
+      background: rgba(212, 175, 55, 0.14);
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      border-radius: 8px;
+      padding: 16px;
+    }
+  </style>
+</head>
+
+<!-- The body holds everything the user actually sees on the screen. -->
+<body>
+
+  <!-- The card container that centers the whole app. -->
+  <div class="card">
+
+    <!-- The lock icon that gives the app its "security vault" feel. -->
+    <div class="lock">&#128274;</div>
+
+    <!-- The main heading of the page. -->
+    <h1>Secret Message Vault</h1>
+
+    <!-- A short line telling the user what to do. -->
+    <p class="subtitle">Verify your identity to unlock the message.</p>
+
+    <!-- ONE form holds ALL inputs so they submit together at once. -->
+    <!-- onsubmit calls our JavaScript; it returns false to stop a reload. -->
+    <form onsubmit="return validateStrings();">
+
+      <!-- Label and input box for the user's FIRST name. -->
+      <label for="firstName">First name</label>
+      <input type="text" id="firstName" placeholder="Jane" />
+
+      <!-- Label and input box for the user's LAST name. -->
+      <label for="lastName">Last name</label>
+      <input type="text" id="lastName" placeholder="Doe" />
+
+      <!-- Label and input box for the user's ZIP code. -->
+      <label for="zipCode">ZIP code</label>
+      <input type="text" id="zipCode" placeholder="85283" />
+
+      <!-- The single submit button that checks all inputs at once. -->
+      <button type="submit">Unlock the message</button>
+
+    </form>
+
+    <!-- Messages (warnings or the secret) are written here using innerHTML. -->
+    <div id="output" class="output"></div>
+
+  </div>
+
+  <!-- Loads the external JavaScript file (keeps all JS out of the HTML). -->
+  <script src="strings.js"></script>
+
+</body>
+</html>
