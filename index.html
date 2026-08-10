@@ -1,24 +1,158 @@
-<!--Larry, 7/2/2026-->
+<!-- ==========================================================
+     Larry Douglas - CSC102 - Bringing It All Together
+     GrantFlowHQ Eligibility Checker
+     Programming concepts used in script.js:
+       1. Decision logic (if / else if / else)
+       2. Loops (for loops)
+       3. String manipulation and validation
+       4. Functions
+       5. Classes
+       6. Objects
+     ========================================================== -->
+
+<!-- Tell the browser this page is written in HTML5 -->
 <!DOCTYPE html>
-<html>
+<!-- Root element, language set to English for screen readers -->
+<html lang="en">
+
+<!-- Head holds information about the page, not page content -->
 <head>
-      <title>CSC102 Home Page</title>
+  <!-- Character encoding so symbols like the dollar sign render correctly -->
+  <meta charset="UTF-8" />
+  <!-- Makes the page scale properly on phones and tablets -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Text shown on the browser tab -->
+  <title>GrantFlowHQ | Eligibility Checker</title>
+  <!-- Pre-connect to Google's font servers so the fonts load faster -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <!-- Second pre-connect required by Google Fonts for the font files themselves -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Creative element: custom Google Fonts (Poppins for headings, IBM Plex Sans for body) -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <!-- Link to my external stylesheet that holds all the colors and layout -->
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Link to my external JavaScript file; defer waits until the HTML is parsed before running it -->
+  <script src="script.js" defer></script>
 </head>
 
+<!-- Body holds everything the user actually sees -->
 <body>
-      <header><h1>Welcome to my CSC102 Home Page</h1>
-      <nav>
-            <a href="index.html">Home</a>
-            <br>
-            <a href="boards.html">boards</a>
-      </nav>
-      </header>
-    
 
-    <p>
-         <img id="memeImage" src="csc102_meme.jpg">
-         
-   </p>
+  <!-- Page header with the brand mark and name -->
+  <header class="site-header">
+    <!-- Creative element: inline SVG logo mark drawn in the brand gold -->
+    <svg class="logo-mark" viewBox="0 0 48 48" role="img" aria-label="GrantFlowHQ logo">
+      <!-- Outer rounded square in brand gold -->
+      <rect x="2" y="2" width="44" height="44" rx="10" fill="#C9A227" />
+      <!-- Stylized flow arrow in brand navy, suggesting money moving through a pipeline -->
+      <path d="M13 30 L23 18 L29 25 L36 16" fill="none" stroke="#0B1F3A" stroke-width="4"
+        stroke-linecap="round" stroke-linejoin="round" />
+      <!-- Small dot marking the end of the flow -->
+      <circle cx="36" cy="16" r="3.5" fill="#0B1F3A" />
+    </svg>
+    <!-- Wrapper so the two lines of header text stack together -->
+    <div class="header-text">
+      <!-- Main page heading -->
+      <h1>GrantFlowHQ</h1>
+      <!-- Short supporting line explaining what the tool does -->
+      <p class="tagline">Check which grants your small or veteran-owned business can apply for.</p>
+    </div>
+  </header>
 
-   </body>
+  <!-- Main content region of the page -->
+  <main class="layout">
+
+    <!-- Left panel: the input form -->
+    <section class="panel form-panel">
+      <!-- Small label above the form heading -->
+      <p class="eyebrow">Step 1</p>
+      <!-- Heading for the form section -->
+      <h2>Tell me about your business</h2>
+
+      <!-- The form. All user input is collected here and handled by the submit event in script.js -->
+      <form id="eligibilityForm" novalidate>
+
+        <!-- Group wrapper keeps a label and its input together -->
+        <div class="field">
+          <!-- Label tied to the business name input -->
+          <label for="businessName">Business name</label>
+          <!-- Text box where the user types the business name -->
+          <input type="text" id="businessName" name="businessName" placeholder="Douglas Electrical LLC" />
+          <!-- Hint text explaining what the field will accept -->
+          <small class="hint">2 to 40 characters. Letters, numbers, spaces, &amp; ' - . are allowed.</small>
+        </div>
+
+        <!-- Group wrapper for the years in business field -->
+        <div class="field">
+          <!-- Label tied to the years input -->
+          <label for="yearsInBusiness">Years in business</label>
+          <!-- Text box for the number of years; type text so my own validation runs, not the browser's -->
+          <input type="text" id="yearsInBusiness" name="yearsInBusiness" placeholder="3" inputmode="numeric" />
+          <!-- Hint text for the accepted range -->
+          <small class="hint">A whole number from 0 to 100.</small>
+        </div>
+
+        <!-- Group wrapper for the veteran-owned question -->
+        <div class="field">
+          <!-- Label tied to the veteran ownership dropdown -->
+          <label for="veteranOwned">Veteran-owned?</label>
+          <!-- Dropdown so the user picks instead of typing -->
+          <select id="veteranOwned" name="veteranOwned">
+            <!-- Default choice so the user has to make a decision -->
+            <option value="">Select one</option>
+            <!-- Yes choice -->
+            <option value="yes">Yes</option>
+            <!-- No choice -->
+            <option value="no">No</option>
+          </select>
+          <!-- Hint text explaining why this question is asked -->
+          <small class="hint">Some programs are set aside for veteran-owned businesses.</small>
+        </div>
+
+        <!-- Group wrapper for the tracking code field -->
+        <div class="field">
+          <!-- Label tied to the tracking code input -->
+          <label for="trackingCode">Tracking code</label>
+          <!-- Text box for the code the user wants attached to this search -->
+          <input type="text" id="trackingCode" name="trackingCode" placeholder="LDL2025LDL" />
+          <!-- Hint text describing the code rules and the mirror-code bonus -->
+          <small class="hint">3 to 12 letters and numbers. Codes that read the same both ways are flagged as mirror codes.</small>
+        </div>
+
+        <!-- Submit button that fires the form's submit event -->
+        <button type="submit" class="submit-button">Check my eligibility</button>
+      </form>
+    </section>
+
+    <!-- Right panel: everything the program writes back to the user -->
+    <section class="panel results-panel">
+      <!-- Small label above the results heading -->
+      <p class="eyebrow">Step 2</p>
+      <!-- Heading for the results section -->
+      <h2>Your results</h2>
+
+      <!-- Empty container where validation and confirmation messages are written with innerHTML -->
+      <div id="messageArea" class="message-area"></div>
+
+      <!-- Empty container where the mirror-code (palindrome) message is written with innerHTML -->
+      <div id="codeArea" class="code-area"></div>
+
+      <!-- Empty container where the matching grant cards are written with innerHTML -->
+      <div id="resultsArea" class="results-area">
+        <!-- Starting message shown before the user submits anything -->
+        <p class="placeholder">Fill in the form and select Check my eligibility to see your matches.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer with my name and course, so the page identifies itself -->
+  <footer class="site-footer">
+    <!-- Footer credit line -->
+    <p>Built by Larry Douglas &middot; CSC102 &middot; University of Advancing Technology</p>
+  </footer>
+
+</body>
 </html>
