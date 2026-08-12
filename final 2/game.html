@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     game.html - AWARD GUESS GAME
+     CSC102 Final Project: A Web Presence
+     Author: Larry Douglas
+
+     Guess the hidden award amount in six tries. Feedback is written
+     with innerHTML and backed up with a sound file.
+     ============================================================ -->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrantFlowHQ | Award Guess Game</title>
+
+  <!-- EXTERNAL CSS: shared stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- INTERNAL CSS: the scoreboard strip below only exists on this page,
+       so its rules live here instead of in the shared file -->
+  <style>
+    /* Row of three small stat boxes above the guess form */
+    .scoreboard {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .score-box {
+      flex: 1;
+      background-color: #0b1f3a;
+      color: #ffffff;
+      border-radius: 6px;
+      padding: 0.7rem;
+      text-align: center;
+    }
+
+    /* Small uppercase label above each number */
+    .score-box span {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #b9c4d4;
+    }
+
+    .score-box strong {
+      font-size: 1.35rem;
+      color: #c9a227;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <h1 class="brand"><a class="home-link" href="index.html">GrantFlow<span class="brand-accent">HQ</span></a></h1>
+    <p class="tagline">Find it. Draft it. Submit it.</p>
+  </header>
+
+  <nav class="site-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="objectives.html">Objectives</a></li>
+      <li><a href="table.html">Grant Table</a></li>
+      <li><a href="palindrome.html">Palindrome</a></li>
+      <li><a href="validate.html">Application Form</a></li>
+      <li><a class="active" href="game.html">Game</a></li>
+      <li><a href="meme.html">Memes</a></li>
+    </ul>
+  </nav>
+
+  <main class="wrapper">
+
+    <h2 class="section-title">Award Guess Game</h2>
+    <p class="intro">
+      A grant somewhere in the pipeline is worth a whole number of thousands
+      between 1 and 100. Find it in six guesses. Each guess tells you high or
+      low, and how warm you are getting.
+    </p>
+
+    <section class="card">
+
+      <!-- Scoreboard. game.js keeps these three numbers current. -->
+      <div class="scoreboard">
+        <div class="score-box"><span>Guesses left</span><strong id="triesLeft">6</strong></div>
+        <div class="score-box"><span>Last guess</span><strong id="lastGuess">--</strong></div>
+        <div class="score-box"><span>Range</span><strong id="rangeLeft">1-100</strong></div>
+      </div>
+
+      <!-- FORM with submit, as required -->
+      <form id="guessForm">
+        <div class="form-row">
+          <label for="guessInput">Your guess, in thousands</label>
+          <input type="text" id="guessInput" name="guessInput" autocomplete="off" placeholder="e.g. 50">
+          <p class="hint">Whole numbers from 1 to 100. 50 means a $50,000 award.</p>
+        </div>
+        <button type="submit" class="btn">Guess</button>
+        <!-- New game is a plain link back to this same page. Reloading is the
+             simplest reset there is, and it needs no event listener. -->
+        <a class="btn btn-secondary" href="game.html">New game</a>
+      </form>
+
+      <!-- All feedback is written here with innerHTML -->
+      <div class="message" id="gameResult">Waiting for JS to load...</div>
+
+    </section>
+
+    <section class="card">
+      <h3>Sound</h3>
+      <p>
+        A right guess plays a rising chime and a wrong guess plays a low buzz.
+        Both are short WAV files included with the project, so the page works
+        offline with nothing to download. If your browser blocks audio until
+        you interact with the page, the sound starts on your first guess.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>GrantFlowHQ &middot; CSC102 Final Project &middot; University of Advancing Technology</p>
+    <p><a href="index.html">Back to home</a></p>
+  </footer>
+
+  <!-- EXTERNAL JAVASCRIPT: all game logic lives in game.js -->
+  <script src="game.js"></script>
+
+</body>
+
+</html>

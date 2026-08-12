@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     table.html - GRANT TABLE PAGE
+     CSC102 Final Project: A Web Presence
+     Author: Larry Douglas
+
+     A hard-coded table of the federal grant programs GrantFlowHQ
+     tracks. Five columns, six data rows, plus a totals footer.
+     ============================================================ -->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrantFlowHQ | Grant Table</title>
+
+  <!-- EXTERNAL CSS: shared stylesheet, holds all the table styling -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <h1 class="brand"><a class="home-link" href="index.html">GrantFlow<span class="brand-accent">HQ</span></a></h1>
+    <p class="tagline">Find it. Draft it. Submit it.</p>
+  </header>
+
+  <nav class="site-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="objectives.html">Objectives</a></li>
+      <li><a class="active" href="table.html">Grant Table</a></li>
+      <li><a href="palindrome.html">Palindrome</a></li>
+      <li><a href="validate.html">Application Form</a></li>
+      <li><a href="game.html">Game</a></li>
+      <li><a href="meme.html">Memes</a></li>
+    </ul>
+  </nav>
+
+  <main class="wrapper">
+
+    <h2 class="section-title">Tracked Grant Opportunities</h2>
+
+    <!-- INLINE CSS: the style attribute below is written straight on the
+         element. It wins over external and internal because it is the most
+         specific. Used here as the demonstration, not as a habit. -->
+    <p class="intro" style="border-left: 4px solid #c9a227; padding-left: 12px;">
+      Six federal programs currently in the pipeline. Award amounts are the
+      published ceiling for a first-time applicant.
+    </p>
+
+    <table class="grant-table">
+
+      <!-- Caption is the table title that screen readers announce -->
+      <caption class="table-caption">Federal grant programs tracked for fiscal year 2026</caption>
+
+      <!-- Column labels belong in thead so the browser treats them as headers -->
+      <thead>
+        <tr>
+          <th scope="col">Grant Program</th>
+          <th scope="col">Funding Agency</th>
+          <th scope="col">Award Ceiling</th>
+          <th scope="col">Deadline</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+
+      <!-- Data rows. All values hard coded, as the assignment asks -->
+      <tbody>
+
+        <!-- Row 1 - already out the door -->
+        <tr>
+          <td>SBIR Phase I</td>
+          <td>National Science Foundation</td>
+          <td class="amount">$305,000</td>
+          <td>Sep 15, 2026</td>
+          <td><span class="status status-submitted">Submitted</span></td>
+        </tr>
+
+        <!-- Row 2 -->
+        <tr>
+          <td>STTR Phase I</td>
+          <td>Department of Energy</td>
+          <td class="amount">$200,000</td>
+          <td>Oct 2, 2026</td>
+          <td><span class="status status-drafting">Drafting</span></td>
+        </tr>
+
+        <!-- Row 3 -->
+        <tr>
+          <td>Rural Business Development Grant</td>
+          <td>USDA Rural Development</td>
+          <td class="amount">$75,000</td>
+          <td>Oct 31, 2026</td>
+          <td><span class="status status-drafting">Drafting</span></td>
+        </tr>
+
+        <!-- Row 4 - waiting on the agency, nothing left for me to do -->
+        <tr>
+          <td>Veteran Entrepreneur Training</td>
+          <td>Small Business Administration</td>
+          <td class="amount">$50,000</td>
+          <td>Aug 29, 2026</td>
+          <td><span class="status status-review">Under review</span></td>
+        </tr>
+
+        <!-- Row 5 -->
+        <tr>
+          <td>Manufacturing Extension Partnership</td>
+          <td>NIST</td>
+          <td class="amount">$120,000</td>
+          <td>Nov 14, 2026</td>
+          <td><span class="status status-watching">Watching</span></td>
+        </tr>
+
+        <!-- Row 6 - blocked until a match commitment is in hand -->
+        <tr>
+          <td>Community Navigator Pilot</td>
+          <td>Small Business Administration</td>
+          <td class="amount">$1,000,000</td>
+          <td>Sep 30, 2026</td>
+          <td><span class="status status-blocked">Missing match</span></td>
+        </tr>
+
+      </tbody>
+
+      <!-- Footer row totals the money column so the table ends on a point -->
+      <tfoot>
+        <tr>
+          <td colspan="2">Total potential funding tracked</td>
+          <td class="amount">$1,750,000</td>
+          <td colspan="2">6 programs</td>
+        </tr>
+      </tfoot>
+
+    </table>
+
+    <!-- Placeholder text. table.js overwrites this line when it runs, so if
+         this warning is still on screen the script did not load -->
+    <p class="hint" id="statusLine" style="text-align:center; margin-top:1.25rem;">Waiting for JS to load...</p>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>GrantFlowHQ &middot; CSC102 Final Project &middot; University of Advancing Technology</p>
+    <p><a href="index.html">Back to home</a></p>
+  </footer>
+
+  <!-- EXTERNAL JAVASCRIPT. No script is written inside this file. The tag
+       sits at the bottom so the table exists before the script runs. -->
+  <script src="table.js"></script>
+
+</body>
+
+</html>

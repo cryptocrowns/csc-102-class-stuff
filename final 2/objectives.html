@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     objectives.html - COURSE OBJECTIVES PAGE
+     CSC102 Final Project: A Web Presence
+     Author: Larry Douglas
+
+     Lists the three course objectives and points at the page on this
+     site that demonstrates each one.
+     ============================================================ -->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrantFlowHQ | Course Objectives</title>
+
+  <!-- EXTERNAL CSS: the same shared stylesheet as every other page -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <h1 class="brand"><a class="home-link" href="index.html">GrantFlow<span class="brand-accent">HQ</span></a></h1>
+    <p class="tagline">Find it. Draft it. Submit it.</p>
+  </header>
+
+  <!-- Same seven-item menu, same order, on every page -->
+  <nav class="site-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a class="active" href="objectives.html">Objectives</a></li>
+      <li><a href="table.html">Grant Table</a></li>
+      <li><a href="palindrome.html">Palindrome</a></li>
+      <li><a href="validate.html">Application Form</a></li>
+      <li><a href="game.html">Game</a></li>
+      <li><a href="meme.html">Memes</a></li>
+    </ul>
+  </nav>
+
+  <main class="wrapper">
+
+    <h2 class="section-title">Course Objectives</h2>
+    <p class="intro">
+      Three objectives for CSC102, and the page on this site that shows I hit each one.
+    </p>
+
+    <!-- Objective 1 -->
+    <section class="card">
+      <h3><span class="objective-num">1</span>Demonstrate basic formal problem-solving techniques for programming</h3>
+      <p>
+        Every interactive page here started as a problem written out in plain
+        language before any code got typed. The palindrome checker is the
+        clearest example: strip the punctuation and the spaces, force
+        everything to lower case, reverse the copy, compare it to the
+        original. Four steps, decided before I opened the editor.
+      </p>
+      <p>
+        This is the same order I worked in for thirty years as an
+        electrician. You do not start pulling wire until you know where the
+        circuit runs.
+      </p>
+      <p>
+        Evidence: <a class="evidence-link" href="palindrome.html">Palindrome Checker</a>
+        and <a class="evidence-link" href="game.html">Award Guess Game</a>
+      </p>
+    </section>
+
+    <!-- Objective 2 -->
+    <section class="card">
+      <h3><span class="objective-num">2</span>Describe and apply variables, basic and composite data types, and collections</h3>
+      <p>
+        The game page holds a target number and a guess count in number
+        variables and a running result in a string. The meme page keeps its
+        three memes in an array of objects, which is a collection of
+        composite values, and reads the one the user picked out of it by
+        index. The application form works with strings, a number, and a
+        Boolean flag that tracks whether every field passed.
+      </p>
+      <p>
+        Evidence: <a class="evidence-link" href="meme.html">Meme Wall</a>
+        and <a class="evidence-link" href="validate.html">Application Form</a>
+      </p>
+    </section>
+
+    <!-- Objective 3 -->
+    <section class="card">
+      <h3><span class="objective-num">3</span>Demonstrate effective troubleshooting, testing, and debugging of programs</h3>
+      <p>
+        Every page on this site loads with a visible placeholder message that
+        the JavaScript file overwrites when it runs. If I open a page and the
+        placeholder is still sitting there, the script never loaded, and I go
+        check the file name and the path before I go hunting anywhere else.
+        That is a deliberate test point, not an accident.
+      </p>
+      <p>
+        Validation gets tested the same way I tested circuits: feed it the bad
+        input on purpose. An empty name, an email with no @ sign, a negative
+        award amount, a decimal where a whole number belongs. If the form
+        accepts any of those, the check is broken.
+      </p>
+      <p>
+        Evidence: <a class="evidence-link" href="validate.html">Application Form</a>
+        and <a class="evidence-link" href="table.html">Grant Table</a>
+      </p>
+    </section>
+
+    <!-- Note about the three CSS methods, since that is a stated objective
+         of the assignment as well -->
+    <section class="card">
+      <h3>Inline vs Internal vs External CSS</h3>
+      <p>
+        <strong>External</strong> is <code>styles.css</code>. Every page links
+        to it and it holds anything used more than once. One edit changes the
+        whole site.
+      </p>
+      <p>
+        <strong>Internal</strong> is a <code>&lt;style&gt;</code> block in the
+        head of a single page. The welcome band on the home page and the score
+        panel on the game page are written that way, because neither is used
+        anywhere else.
+      </p>
+      <p>
+        <strong>Inline</strong> is a <code>style</code> attribute on one
+        element. It overrides the other two because it is the most specific.
+        It is on the About box on the home page and on the intro line of the
+        grant table. It is the least maintainable of the three, so I kept it
+        to those two spots on purpose.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>GrantFlowHQ &middot; CSC102 Final Project &middot; University of Advancing Technology</p>
+    <p><a href="index.html">Back to home</a></p>
+  </footer>
+
+</body>
+
+</html>

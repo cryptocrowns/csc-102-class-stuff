@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     palindrome.html - PALINDROME CHECKER
+     CSC102 Final Project: A Web Presence
+     Author: Larry Douglas
+
+     User types a word or phrase into a form, submits it, and the
+     result is written into the page with innerHTML. No alerts.
+     ============================================================ -->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrantFlowHQ | Palindrome Checker</title>
+  <!-- EXTERNAL CSS: shared stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <h1 class="brand"><a class="home-link" href="index.html">GrantFlow<span class="brand-accent">HQ</span></a></h1>
+    <p class="tagline">Find it. Draft it. Submit it.</p>
+  </header>
+
+  <nav class="site-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="objectives.html">Objectives</a></li>
+      <li><a href="table.html">Grant Table</a></li>
+      <li><a class="active" href="palindrome.html">Palindrome</a></li>
+      <li><a href="validate.html">Application Form</a></li>
+      <li><a href="game.html">Game</a></li>
+      <li><a href="meme.html">Memes</a></li>
+    </ul>
+  </nav>
+
+  <main class="wrapper">
+
+    <h2 class="section-title">Palindrome Checker</h2>
+    <p class="intro">
+      A palindrome reads the same forward and backward. Spaces, capitals, and
+      punctuation are ignored, so "A man, a plan, a canal: Panama" counts.
+    </p>
+
+    <section class="card">
+
+      <!-- FORM with a submit button, as the assignment requires.
+           palindrome.js attaches the handler to this form by its id. -->
+      <form id="palindromeForm">
+
+        <div class="form-row">
+          <label for="phraseInput">Word or phrase</label>
+          <!-- autocomplete off keeps old entries from covering the result -->
+          <input type="text" id="phraseInput" name="phraseInput" autocomplete="off"
+                 placeholder="Try: Never odd or even">
+          <p class="hint">Letters and numbers are compared. Everything else is stripped out.</p>
+        </div>
+
+        <button type="submit" class="btn">Check it</button>
+      </form>
+
+      <!-- The result is written here with innerHTML. The starting text is my
+           check that palindrome.js loaded at all. -->
+      <div class="message" id="palindromeResult">Waiting for JS to load...</div>
+
+    </section>
+
+    <!-- Plain-language walkthrough of the logic, which is the formal
+         problem-solving step the course objective asks for -->
+    <section class="card">
+      <h3>How it works</h3>
+      <p>
+        Four steps, decided before any code was written. Strip out everything
+        that is not a letter or a number. Force what is left to lower case.
+        Reverse that cleaned copy. Compare the reversed copy to the cleaned
+        original. If they match, it is a palindrome.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>GrantFlowHQ &middot; CSC102 Final Project &middot; University of Advancing Technology</p>
+    <p><a href="index.html">Back to home</a></p>
+  </footer>
+
+  <!-- EXTERNAL JAVASCRIPT: all logic lives in palindrome.js -->
+  <script src="palindrome.js"></script>
+
+</body>
+
+</html>

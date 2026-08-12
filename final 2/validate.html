@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     validate.html - USER INPUT AND VALIDATION
+     CSC102 Final Project: A Web Presence
+     Author: Larry Douglas
+
+     A grant intake form. Every field is checked before anything is
+     accepted, and all messages are written with innerHTML.
+     ============================================================ -->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrantFlowHQ | Application Form</title>
+  <!-- EXTERNAL CSS: shared stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <h1 class="brand"><a class="home-link" href="index.html">GrantFlow<span class="brand-accent">HQ</span></a></h1>
+    <p class="tagline">Find it. Draft it. Submit it.</p>
+  </header>
+
+  <nav class="site-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="objectives.html">Objectives</a></li>
+      <li><a href="table.html">Grant Table</a></li>
+      <li><a href="palindrome.html">Palindrome</a></li>
+      <li><a class="active" href="validate.html">Application Form</a></li>
+      <li><a href="game.html">Game</a></li>
+      <li><a href="meme.html">Memes</a></li>
+    </ul>
+  </nav>
+
+  <main class="wrapper">
+
+    <h2 class="section-title">Grant Application Intake</h2>
+    <p class="intro">
+      Four fields, all required. Nothing is accepted until every one of them
+      passes, and the form tells you exactly which one failed.
+    </p>
+
+    <section class="card">
+
+      <!-- FORM with submit, as required. validate.js attaches to it by id.
+           novalidate turns off the browser's own popups so my JavaScript
+           checks are the ones doing the work. -->
+      <form id="applicationForm" novalidate>
+
+        <div class="form-row">
+          <label for="businessName">Business name</label>
+          <input type="text" id="businessName" name="businessName" autocomplete="off">
+          <p class="hint">At least 2 characters.</p>
+        </div>
+
+        <div class="form-row">
+          <label for="email">Contact email</label>
+          <input type="text" id="email" name="email" autocomplete="off">
+          <p class="hint">Needs an @ and a dot after it, e.g. owner@shop.com</p>
+        </div>
+
+        <div class="form-row">
+          <label for="requestAmount">Amount requested (USD)</label>
+          <input type="text" id="requestAmount" name="requestAmount" autocomplete="off">
+          <p class="hint">Whole dollars between 1,000 and 1,000,000. No commas or dollar sign.</p>
+        </div>
+
+        <div class="form-row">
+          <label for="grantType">Grant type</label>
+          <!-- The first option has an empty value so "not chosen" is a real,
+               testable state instead of a silent default -->
+          <select id="grantType" name="grantType">
+            <option value="">-- Select one --</option>
+            <option value="SBIR Phase I">SBIR Phase I</option>
+            <option value="STTR Phase I">STTR Phase I</option>
+            <option value="Rural Business Development">Rural Business Development</option>
+            <option value="Veteran Entrepreneur Training">Veteran Entrepreneur Training</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn">Submit application</button>
+      </form>
+
+      <!-- All validation messages are written here with innerHTML -->
+      <div class="message" id="formResult">Waiting for JS to load...</div>
+
+    </section>
+
+    <section class="card">
+      <h3>How I tested it</h3>
+      <p>
+        Same way I tested a circuit: feed it the bad input on purpose. Empty
+        name. Email with no @ sign. Email with an @ but no dot after it.
+        Amount of 500, then 2,000,000, then 12.50, then the word "lots".
+        No grant type selected. Every one of those has to be caught, and the
+        message has to name the field that failed, or the check is no good.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>GrantFlowHQ &middot; CSC102 Final Project &middot; University of Advancing Technology</p>
+    <p><a href="index.html">Back to home</a></p>
+  </footer>
+
+  <!-- EXTERNAL JAVASCRIPT: all validation lives in validate.js -->
+  <script src="validate.js"></script>
+
+</body>
+
+</html>

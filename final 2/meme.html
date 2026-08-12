@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     meme.html - MEME WALL
+     CSC102 Final Project: A Web Presence
+     Author: Larry Douglas
+
+     Three memes stored in an array of objects in meme.js. The form
+     picks one and it gets written into the page with innerHTML.
+     ============================================================ -->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrantFlowHQ | Meme Wall</title>
+  <!-- EXTERNAL CSS: shared stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <h1 class="brand"><a class="home-link" href="index.html">GrantFlow<span class="brand-accent">HQ</span></a></h1>
+    <p class="tagline">Find it. Draft it. Submit it.</p>
+  </header>
+
+  <nav class="site-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="objectives.html">Objectives</a></li>
+      <li><a href="table.html">Grant Table</a></li>
+      <li><a href="palindrome.html">Palindrome</a></li>
+      <li><a href="validate.html">Application Form</a></li>
+      <li><a href="game.html">Game</a></li>
+      <li><a class="active" href="meme.html">Memes</a></li>
+    </ul>
+  </nav>
+
+  <main class="wrapper">
+
+    <h2 class="section-title">Meme Wall</h2>
+    <p class="intro">
+      Three originals, made for this project. Thirty years chasing faults in
+      conduit, now chasing them in JavaScript. Same job, smaller wires.
+    </p>
+
+    <!-- Picker form. Choosing a meme and submitting writes the full-size
+         version into the box below with innerHTML. -->
+    <section class="card">
+      <form id="memeForm">
+        <div class="form-row">
+          <label for="memePick">Show one full size</label>
+          <select id="memePick" name="memePick">
+            <option value="">-- Pick a meme --</option>
+            <option value="0">1. It works on my laptop</option>
+            <option value="1">2. Due Monday by 2:59 AM</option>
+            <option value="2">3. Thirty years chasing faults</option>
+          </select>
+        </div>
+        <button type="submit" class="btn">Show it</button>
+      </form>
+
+      <!-- meme.js writes the chosen image and its caption here -->
+      <div class="message" id="featuredMeme">Waiting for JS to load...</div>
+    </section>
+
+    <!-- The gallery. All three images are plain HTML so they still show
+         even if the picker is never used. Alt text describes each one. -->
+    <h3 class="section-title">All three</h3>
+    <div class="meme-grid">
+
+      <figure class="meme-card">
+        <img src="meme1.png" alt="A laptop with a green check next to a server with a red X. Caption: it works on my laptop.">
+        <p>Every deploy, without fail.</p>
+      </figure>
+
+      <figure class="meme-card">
+        <img src="meme2.png" alt="A clock reading just before three. Caption: due Monday by 2:59 AM, submitting at 2:57.">
+        <p>The UAT deadline, respected precisely.</p>
+      </figure>
+
+      <figure class="meme-card">
+        <img src="meme3.png" alt="A junction box with one loose sparking wire. Caption: thirty years chasing faults, same job, smaller wires.">
+        <p>It is always the one connection you did not check.</p>
+      </figure>
+
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>GrantFlowHQ &middot; CSC102 Final Project &middot; University of Advancing Technology</p>
+    <p><a href="index.html">Back to home</a></p>
+  </footer>
+
+  <!-- EXTERNAL JAVASCRIPT: the meme collection lives in meme.js -->
+  <script src="meme.js"></script>
+
+</body>
+
+</html>

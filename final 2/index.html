@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     index.html - LANDING PAGE
+     CSC102 Final Project: A Web Presence
+     Author: Larry Douglas | University of Advancing Technology
+
+     This is the hub. Every other page in the site is reachable from
+     here, and every other page links back here from its header and
+     its nav bar.
+     ============================================================ -->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrantFlowHQ | Home</title>
+
+  <!-- EXTERNAL CSS: one shared file styles all seven pages -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- INTERNAL CSS ------------------------------------------------
+       Internal (embedded) CSS only applies to the page it is written
+       in. The hero band below exists on the landing page and nowhere
+       else, so its rules belong here instead of in styles.css.
+       -------------------------------------------------------------- -->
+  <style>
+    /* Tall welcome band that only the landing page uses */
+    .hero {
+      background-color: #16345c;
+      color: #ffffff;
+      padding: 2.25rem 1.25rem;
+      border-radius: 6px;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .hero h2 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.7rem;
+    }
+
+    .hero p {
+      margin: 0 auto;
+      max-width: 620px;
+      color: #d6dee9;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Site header. The brand is a link home on every page -->
+  <header class="site-header">
+    <h1 class="brand"><a class="home-link" href="index.html">GrantFlow<span class="brand-accent">HQ</span></a></h1>
+    <p class="tagline">Find it. Draft it. Submit it.</p>
+  </header>
+
+  <!-- Main navigation. The same seven links appear on every page in the
+       same order, so the menu never moves out from under the user.
+       The current page carries class="active" and is not a dead link. -->
+  <nav class="site-nav">
+    <ul>
+      <li><a class="active" href="index.html">Home</a></li>
+      <li><a href="objectives.html">Objectives</a></li>
+      <li><a href="table.html">Grant Table</a></li>
+      <li><a href="palindrome.html">Palindrome</a></li>
+      <li><a href="validate.html">Application Form</a></li>
+      <li><a href="game.html">Game</a></li>
+      <li><a href="meme.html">Memes</a></li>
+    </ul>
+  </nav>
+
+  <main class="wrapper">
+
+    <!-- Hero band introduces the site in one breath -->
+    <section class="hero">
+      <h2>Six tools, one grant pipeline</h2>
+      <p>
+        GrantFlowHQ helps small and veteran-owned businesses find federal
+        grants and draft the applications. This site is the CSC102 build:
+        every page below is a piece of the project, written in HTML, CSS,
+        and JavaScript.
+      </p>
+    </section>
+
+    <h2 class="section-title">Where do you want to go?</h2>
+    <p class="intro">Each tile opens one page. Every page has this same menu at the top to get back.</p>
+
+    <!-- Six tiles, one per page. The whole tile is the link, which is a
+         bigger and more forgiving target than a line of text -->
+    <div class="tile-grid">
+
+      <a class="tile" href="objectives.html">
+        <h3>Course Objectives</h3>
+        <p>The three CSC102 objectives and the page that proves each one.</p>
+      </a>
+
+      <a class="tile" href="table.html">
+        <h3>Grant Table</h3>
+        <p>Six federal programs in the pipeline, with award ceilings and deadlines.</p>
+      </a>
+
+      <a class="tile" href="palindrome.html">
+        <h3>Palindrome Checker</h3>
+        <p>Type a word or a phrase and find out if it reads the same backward.</p>
+      </a>
+
+      <a class="tile" href="validate.html">
+        <h3>Application Form</h3>
+        <p>A grant intake form that checks every field before it accepts anything.</p>
+      </a>
+
+      <a class="tile" href="game.html">
+        <h3>Award Guess Game</h3>
+        <p>Guess the award amount in six tries. Warmer and colder, with sound.</p>
+      </a>
+
+      <a class="tile" href="meme.html">
+        <h3>Meme Wall</h3>
+        <p>Three memes about writing code after thirty years of pulling wire.</p>
+      </a>
+
+    </div>
+
+    <!-- About block: who built this, for which course, at which school -->
+    <section class="card" style="border-left: 5px solid #c9a227;">
+      <!-- INLINE CSS is the style attribute directly above. It is the most
+           specific of the three methods and the hardest to maintain, so I
+           used it once, on one element, to show the difference. Anything
+           reused would go in styles.css instead. -->
+      <h3>About this site</h3>
+      <p>
+        Built by Larry Douglas for CSC102, Introductory Programming, at the
+        University of Advancing Technology. Thirty years as a chief
+        electrician, now chasing faults in JavaScript instead of conduit.
+        The project theme is GrantFlowHQ, my own application for grant
+        discovery and drafting.
+      </p>
+      <p class="hint">
+        All pages use one external stylesheet, this page adds internal CSS
+        for the welcome band, and the box you are reading uses inline CSS.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>GrantFlowHQ &middot; CSC102 Final Project &middot; University of Advancing Technology</p>
+    <p><a href="index.html">Back to home</a></p>
+  </footer>
+
+</body>
+
+</html>

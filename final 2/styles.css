@@ -1,0 +1,525 @@
+/* ============================================================
+   styles.css - EXTERNAL stylesheet shared by every page
+   CSC102 Final Project: A Web Presence
+   Author: Larry Douglas
+
+   This is the external CSS file. All seven pages link to it, so a
+   change made here shows up site-wide. That is the whole reason to
+   use external CSS instead of writing styles into each page.
+   ============================================================ */
+
+
+/* ---------- Brand colors in one place ----------
+   Custom properties (variables) let me name the brand colors once.
+   To rebrand the whole site I change these six lines, nothing else. */
+:root {
+  --navy: #0b1f3a;
+  /* primary brand color - bars, headers, buttons */
+  --navy-light: #16345c;
+  /* lighter navy for hovers and accents */
+  --gold: #c9a227;
+  /* GrantFlowHQ accent gold */
+  --page-bg: #f4f6f9;
+  /* soft gray page background */
+  --card-bg: #ffffff;
+  /* white cards sit on the gray background */
+  --text: #1f2937;
+  /* near-black body text */
+  --border: #d7dce4;
+  /* light gray borders */
+}
+
+
+/* ---------- Page basics ---------- */
+
+body {
+  /* Kill the browser default margin so the bars reach the screen edges */
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--page-bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* Wrapper caps the line length and centers the content block */
+.wrapper {
+  max-width: 950px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+
+/* ---------- Header and navigation ---------- */
+
+.site-header {
+  background-color: var(--navy);
+  color: #ffffff;
+  padding: 1.5rem 1rem 1rem 1rem;
+  text-align: center;
+  border-bottom: 4px solid var(--gold);
+}
+
+.brand {
+  margin: 0;
+  font-size: 1.9rem;
+  letter-spacing: 0.5px;
+}
+
+/* The logo reads in two parts - "GrantFlow" white, "HQ" gold */
+.brand-accent {
+  color: var(--gold);
+}
+
+.tagline {
+  margin: 0.3rem 0 0 0;
+  font-size: 0.85rem;
+  color: #b9c4d4;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* The brand name in the header is a link back to the landing page on
+   every single page, so home is always one click away */
+.home-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Navigation bar sits directly under the header */
+.site-nav {
+  background-color: var(--navy-light);
+  text-align: center;
+  padding: 0.4rem;
+}
+
+/* The nav is a list - removing the bullets and laying the items out
+   inline is what turns a plain list into a menu bar */
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-nav li {
+  display: inline-block;
+  margin: 0.15rem;
+}
+
+.site-nav a {
+  display: block;
+  padding: 0.45rem 0.85rem;
+  color: #e6ebf3;
+  text-decoration: none;
+  font-size: 0.9rem;
+  border-radius: 4px;
+}
+
+/* Hover feedback tells the user the item is clickable */
+.site-nav a:hover {
+  background-color: var(--gold);
+  color: var(--navy);
+}
+
+/* The page you are already on is marked so you never get lost */
+.site-nav a.active {
+  background-color: var(--gold);
+  color: var(--navy);
+  font-weight: 600;
+}
+
+/* Keyboard users get the same visible outline as mouse users get hover */
+.site-nav a:focus,
+.btn:focus,
+a:focus {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+
+/* ---------- Headings and cards ---------- */
+
+.section-title {
+  color: var(--navy);
+  font-size: 1.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.intro {
+  margin-top: 0;
+  color: #374151;
+}
+
+/* Card is the reusable white panel used on nearly every page */
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  /* Soft shadow lifts the card off the gray page */
+  box-shadow: 0 2px 6px rgba(11, 31, 58, 0.10);
+}
+
+.card h3 {
+  margin-top: 0;
+  color: var(--navy);
+}
+
+
+/* ---------- Landing page tiles ---------- */
+
+/* Grid lays the six tiles out in even columns. auto-fit plus minmax
+   means the tile count per row changes with the screen width without
+   me writing a single extra media query */
+.tile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  /* Space below the grid so the next card does not butt against it */
+  margin-bottom: 1.5rem;
+}
+
+/* Each tile is a link, so the whole box is clickable, not just the text */
+.tile {
+  display: block;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--gold);
+  border-radius: 6px;
+  padding: 1rem;
+  text-decoration: none;
+  color: var(--text);
+  box-shadow: 0 2px 6px rgba(11, 31, 58, 0.10);
+  /* Transition makes the hover lift smooth instead of snapping */
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tile:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(11, 31, 58, 0.18);
+}
+
+.tile h3 {
+  margin: 0 0 0.35rem 0;
+  color: var(--navy);
+  font-size: 1.05rem;
+}
+
+.tile p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+
+/* ---------- Forms ---------- */
+
+/* Labels sit on their own line above their input - easier to scan and
+   easier to hit on a phone than labels beside the field */
+.form-row {
+  margin-bottom: 0.9rem;
+}
+
+.form-row label {
+  display: block;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 0.25rem;
+  font-size: 0.92rem;
+}
+
+.form-row input,
+.form-row select {
+  width: 100%;
+  /* border-box keeps the padding inside the width so the field does not
+     overflow its container */
+  box-sizing: border-box;
+  padding: 0.55rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.form-row input:focus,
+.form-row select:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.28);
+}
+
+/* Hint text under a field, explaining what the field will accept */
+.hint {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin: 0.2rem 0 0 0;
+}
+
+.btn {
+  background-color: var(--navy);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.6rem 1.3rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  /* Pointer cursor tells the user this is a control, not text */
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: var(--navy-light);
+}
+
+/* Secondary button for actions like starting a new game */
+.btn-secondary {
+  background-color: var(--gold);
+  color: var(--navy);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-secondary:hover {
+  background-color: #b08e1f;
+}
+
+
+/* ---------- Message boxes ----------
+   Every page writes its feedback into a div with class "message".
+   The base class draws the box; a second class colors it by result. */
+
+.message {
+  margin-top: 1rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 4px;
+  border-left: 5px solid var(--border);
+  background-color: #f0f3f7;
+  font-size: 0.95rem;
+  /* min-height stops the page from jumping when a message appears */
+  min-height: 1.2rem;
+}
+
+/* Green - the input passed or the guess was right */
+.msg-pass {
+  background-color: #d8f0dd;
+  border-left-color: #17603a;
+  color: #17603a;
+}
+
+/* Red - the input failed validation or the guess was wrong */
+.msg-fail {
+  background-color: #fadada;
+  border-left-color: #8c2222;
+  color: #8c2222;
+}
+
+/* Gold - a hint or a neutral nudge, not a pass or a fail */
+.msg-hint {
+  background-color: #fbf0cd;
+  border-left-color: #7a5c07;
+  color: #7a5c07;
+}
+
+
+/* ---------- Table (used on table.html) ---------- */
+
+.grant-table {
+  /* collapse removes the doubled lines between neighboring cells */
+  border-collapse: collapse;
+  width: 100%;
+  background-color: var(--card-bg);
+  box-shadow: 0 2px 6px rgba(11, 31, 58, 0.12);
+}
+
+.table-caption {
+  caption-side: top;
+  text-align: left;
+  padding: 0.7rem 0;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.grant-table th,
+.grant-table td {
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+
+.grant-table thead th {
+  background-color: var(--navy);
+  color: #ffffff;
+  font-size: 0.78rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Zebra striping - shading every other row keeps the eye on one line
+   while reading across five columns */
+.grant-table tbody tr:nth-child(even) {
+  background-color: #f0f3f7;
+}
+
+.grant-table tbody tr:hover {
+  background-color: #e3ebf6;
+}
+
+/* Money column right aligned with tabular figures so digits line up */
+.amount {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--navy-light);
+}
+
+.grant-table tfoot td {
+  background-color: var(--navy);
+  color: #ffffff;
+  font-weight: 600;
+  border-color: var(--navy-light);
+}
+
+.grant-table tfoot .amount {
+  color: var(--gold);
+}
+
+/* Status pills - one base class for the shape, one color class per state */
+.status {
+  display: inline-block;
+  padding: 0.18rem 0.55rem;
+  border-radius: 12px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-submitted {
+  background-color: #d8f0dd;
+  color: #17603a;
+}
+
+.status-drafting {
+  background-color: #fbf0cd;
+  color: #7a5c07;
+}
+
+.status-review {
+  background-color: #dbe7fa;
+  color: #1c4587;
+}
+
+.status-watching {
+  background-color: #e6e8ec;
+  color: #4b5563;
+}
+
+.status-blocked {
+  background-color: #fadada;
+  color: #8c2222;
+}
+
+
+/* ---------- Meme gallery (used on meme.html) ---------- */
+
+.meme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.meme-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.6rem;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(11, 31, 58, 0.10);
+}
+
+/* width 100% with height auto keeps every meme in proportion no matter
+   how wide its column ends up */
+.meme-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  display: block;
+}
+
+.meme-card p {
+  margin: 0.5rem 0 0.2rem 0;
+  font-size: 0.85rem;
+  color: #4b5563;
+}
+
+/* The single large meme written by meme.js after the form is submitted */
+#featuredMeme img {
+  max-width: 100%;
+  height: auto;
+  border: 3px solid var(--gold);
+  border-radius: 6px;
+}
+
+
+/* ---------- Objectives page list ---------- */
+
+/* Numbered objectives - the numbers are real here because the course
+   objectives are numbered in the syllabus, so the order carries meaning */
+.objective-num {
+  display: inline-block;
+  background-color: var(--gold);
+  color: var(--navy);
+  font-weight: 700;
+  border-radius: 50%;
+  width: 1.7rem;
+  height: 1.7rem;
+  line-height: 1.7rem;
+  text-align: center;
+  margin-right: 0.5rem;
+}
+
+.evidence-link {
+  color: var(--navy-light);
+  font-weight: 600;
+}
+
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  background-color: var(--navy);
+  color: #b9c4d4;
+  text-align: center;
+  font-size: 0.85rem;
+  padding: 1rem;
+  margin-top: 2.5rem;
+}
+
+.site-footer p {
+  margin: 0.15rem 0;
+}
+
+.site-footer a {
+  color: var(--gold);
+}
+
+
+/* ---------- Small screens ----------
+   Below 640px the type and padding shrink so tables and nav still fit
+   on a phone without side-scrolling */
+@media (max-width: 640px) {
+
+  .grant-table th,
+  .grant-table td {
+    padding: 0.4rem 0.45rem;
+    font-size: 0.78rem;
+  }
+
+  .brand {
+    font-size: 1.55rem;
+  }
+
+  .site-nav a {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.85rem;
+  }
+}
