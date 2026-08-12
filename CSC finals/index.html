@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     GrantFlowHQ - Tracked Grant Opportunities
+     CSC102 - Table Assignment
+     Author: Larry Douglas
+     Purpose: Display a hard-coded table of real grant programs that
+              GrantFlowHQ tracks for small and veteran-owned businesses.
+     ============================================================ -->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <!-- Makes the page scale correctly on phones and tablets -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrantFlowHQ | Tracked Grant Opportunities</title>
+
+  <!-- EXTERNAL CSS -------------------------------------------------
+       styles.css holds almost all of the styling for this page.
+       External is the method I use for anything that would be reused
+       on more than one page - one file to edit, every page updates.
+       -------------------------------------------------------------- -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- INTERNAL CSS -------------------------------------------------
+       Internal (embedded) CSS lives inside a <style> tag in the head
+       and only applies to this one page. I used it here for the
+       footer note, which is specific to this page and nowhere else.
+       -------------------------------------------------------------- -->
+  <style>
+    /* Small print under the table - page-specific, so it stays here */
+    .page-note {
+      font-size: 0.85rem;
+      /* Muted gray so it reads as secondary information */
+      color: #6b7280;
+      text-align: center;
+      margin-top: 1.5rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Page header: brand bar across the top -->
+  <header class="site-header">
+    <h1 class="brand">GrantFlow<span class="brand-accent">HQ</span></h1>
+    <p class="tagline">Find it. Draft it. Submit it.</p>
+  </header>
+
+  <!-- Main content wrapper keeps everything centered and readable -->
+  <main class="wrapper">
+
+    <h2 class="section-title">Tracked Grant Opportunities</h2>
+
+    <!-- INLINE CSS ---------------------------------------------------
+         Inline CSS is written directly on the element with a style
+         attribute. It beats external and internal because it is the
+         most specific. I used it once here, on purpose, to show the
+         difference - it is the hardest of the three to maintain, so
+         I would not use it for anything site-wide.
+         --------------------------------------------------------------- -->
+    <p class="intro" style="border-left: 4px solid #c9a227; padding-left: 12px;">
+      Six federal programs currently in the GrantFlowHQ pipeline. Award
+      amounts are the published ceiling for a first-time applicant.
+    </p>
+
+    <!-- The table. 5 columns x 6 data rows (minimum required is 3 x 4) -->
+    <table class="grant-table">
+
+      <!-- Caption gives the table a title that screen readers announce -->
+      <caption class="table-caption">Federal grant programs tracked for fiscal year 2026</caption>
+
+      <!-- Column headers live in thead so the browser knows they are labels -->
+      <thead>
+        <tr>
+          <th scope="col">Grant Program</th>
+          <th scope="col">Funding Agency</th>
+          <th scope="col">Award Ceiling</th>
+          <th scope="col">Deadline</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+
+      <!-- tbody holds the data rows. All values are hard coded on purpose -->
+      <tbody>
+
+        <!-- Row 1 - furthest along, application already sent -->
+        <tr>
+          <td>SBIR Phase I</td>
+          <td>National Science Foundation</td>
+          <td class="amount">$305,000</td>
+          <td>Sep 15, 2026</td>
+          <!-- status-submitted turns this cell green (see styles.css) -->
+          <td><span class="status status-submitted">Submitted</span></td>
+        </tr>
+
+        <!-- Row 2 -->
+        <tr>
+          <td>STTR Phase I</td>
+          <td>Department of Energy</td>
+          <td class="amount">$200,000</td>
+          <td>Oct 2, 2026</td>
+          <!-- status-drafting turns this cell gold -->
+          <td><span class="status status-drafting">Drafting</span></td>
+        </tr>
+
+        <!-- Row 3 -->
+        <tr>
+          <td>Rural Business Development Grant</td>
+          <td>USDA Rural Development</td>
+          <td class="amount">$75,000</td>
+          <td>Oct 31, 2026</td>
+          <td><span class="status status-drafting">Drafting</span></td>
+        </tr>
+
+        <!-- Row 4 -->
+        <tr>
+          <td>Veteran Entrepreneur Training</td>
+          <td>Small Business Administration</td>
+          <td class="amount">$50,000</td>
+          <td>Aug 29, 2026</td>
+          <!-- status-review is blue - waiting on the agency, not on me -->
+          <td><span class="status status-review">Under review</span></td>
+        </tr>
+
+        <!-- Row 5 -->
+        <tr>
+          <td>Manufacturing Extension Partnership</td>
+          <td>NIST</td>
+          <td class="amount">$120,000</td>
+          <td>Nov 14, 2026</td>
+          <td><span class="status status-watching">Watching</span></td>
+        </tr>
+
+        <!-- Row 6 - missing a required document, so it is flagged red -->
+        <tr>
+          <td>Community Navigator Pilot</td>
+          <td>Small Business Administration</td>
+          <td class="amount">$1,000,000</td>
+          <td>Sep 30, 2026</td>
+          <!-- status-blocked turns this cell red -->
+          <td><span class="status status-blocked">Missing match</span></td>
+        </tr>
+
+      </tbody>
+
+      <!-- tfoot totals the award column so the table ends with a takeaway -->
+      <tfoot>
+        <tr>
+          <td colspan="2">Total potential funding tracked</td>
+          <td class="amount">$1,750,000</td>
+          <td colspan="2">6 programs</td>
+        </tr>
+      </tfoot>
+
+    </table>
+
+    <!-- This paragraph starts with a visible warning message. If the page
+         ever shows this text, script.js did not load and I know to check
+         the file name or the path before I go hunting anywhere else. -->
+    <p class="page-note" id="statusLine">Waiting for JS to load...</p>
+
+  </main>
+
+  <!-- Footer closes the page out -->
+  <footer class="site-footer">
+    <p>GrantFlowHQ &middot; Built for CSC102 &middot; University of Advancing Technology</p>
+  </footer>
+
+  <!-- EXTERNAL JAVASCRIPT ------------------------------------------
+       All JavaScript lives in script.js - none of it is written
+       inside this HTML file. The tag sits at the bottom of the body
+       so the table already exists in the page before the script runs.
+       -------------------------------------------------------------- -->
+  <script src="script.js"></script>
+
+</body>
+
+</html>

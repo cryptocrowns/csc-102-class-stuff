@@ -1,0 +1,246 @@
+/* ============================================================
+   styles.css - EXTERNAL stylesheet for the GrantFlowHQ table
+   CSC102 - Table Assignment
+   Author: Larry Douglas
+
+   This is external CSS: a separate file linked from index.html.
+   Every rule below could be reused by any other page in the site
+   just by adding the same <link> tag.
+   ============================================================ */
+
+
+/* ---------- Color variables ----------
+   Setting the brand colors once at the top means I change navy or
+   gold in one place instead of hunting through the whole file. */
+:root {
+  --navy: #0b1f3a;
+  /* primary brand color - headers and header bar */
+  --navy-light: #16345c;
+  /* lighter navy for hover and borders */
+  --gold: #c9a227;
+  /* accent - GrantFlowHQ brand gold */
+  --page-bg: #f4f6f9;
+  /* soft gray page background */
+  --card-bg: #ffffff;
+  /* white behind the table itself */
+  --text: #1f2937;
+  /* near-black body text */
+  --border: #d7dce4;
+  /* light gray cell borders */
+}
+
+
+/* ---------- Page basics ---------- */
+
+/* Reset the browser's default margin so the header bar reaches the edges */
+body {
+  margin: 0;
+  /* System font stack - loads instantly, no outside font file needed */
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--page-bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+
+/* ---------- Header bar ---------- */
+
+.site-header {
+  background-color: var(--navy);
+  color: #ffffff;
+  padding: 1.75rem 1rem;
+  text-align: center;
+  /* Gold rule under the bar ties the header to the brand color */
+  border-bottom: 4px solid var(--gold);
+}
+
+.brand {
+  margin: 0;
+  font-size: 2rem;
+  letter-spacing: 0.5px;
+}
+
+/* The "HQ" half of the logo is gold so the wordmark reads in two parts */
+.brand-accent {
+  color: var(--gold);
+}
+
+.tagline {
+  margin: 0.35rem 0 0 0;
+  font-size: 0.95rem;
+  color: #b9c4d4;
+  /* Small caps effect without a second font file */
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+
+/* ---------- Content wrapper ---------- */
+
+/* max-width keeps line lengths readable; auto margins center the block */
+.wrapper {
+  max-width: 950px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.section-title {
+  color: var(--navy);
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.intro {
+  margin-top: 0;
+  color: #374151;
+}
+
+
+/* ---------- The table ---------- */
+
+.grant-table {
+  /* collapse removes the double lines between adjacent cell borders */
+  border-collapse: collapse;
+  /* Fill the wrapper so the columns have room to breathe */
+  width: 100%;
+  background-color: var(--card-bg);
+  /* Soft shadow lifts the table off the gray background */
+  box-shadow: 0 2px 6px rgba(11, 31, 58, 0.12);
+}
+
+/* Caption sits above the table as its printed title */
+.table-caption {
+  caption-side: top;
+  text-align: left;
+  padding: 0.75rem 0;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+/* Shared padding and borders for every header and data cell */
+.grant-table th,
+.grant-table td {
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--border);
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* Column headers: navy fill, white text, small uppercase labels */
+.grant-table thead th {
+  background-color: var(--navy);
+  color: #ffffff;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Zebra striping - nth-child(even) shades every other row so the eye
+   can track across a wide row without losing its place */
+.grant-table tbody tr:nth-child(even) {
+  background-color: #f0f3f7;
+}
+
+/* Hover highlight gives feedback as the cursor moves down the table */
+.grant-table tbody tr:hover {
+  background-color: #e3ebf6;
+}
+
+/* Money column: right aligned and tabular so the digits stack up */
+.amount {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--navy-light);
+}
+
+/* Footer row: navy band that closes the table and holds the total */
+.grant-table tfoot td {
+  background-color: var(--navy);
+  color: #ffffff;
+  font-weight: 600;
+  border-color: var(--navy-light);
+}
+
+/* Keep the total in the footer right aligned like the column above it */
+.grant-table tfoot .amount {
+  color: var(--gold);
+}
+
+
+/* ---------- Status pills ----------
+   One base class for the shape, then a color class per state so the
+   status of every application is readable at a glance. */
+
+.status {
+  /* inline-block lets the pill take padding without breaking the row */
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Green - application is already out the door */
+.status-submitted {
+  background-color: #d8f0dd;
+  color: #17603a;
+}
+
+/* Gold - actively being written */
+.status-drafting {
+  background-color: #fbf0cd;
+  color: #7a5c07;
+}
+
+/* Blue - waiting on the agency, nothing for me to do */
+.status-review {
+  background-color: #dbe7fa;
+  color: #1c4587;
+}
+
+/* Gray - on the watch list, not started */
+.status-watching {
+  background-color: #e6e8ec;
+  color: #4b5563;
+}
+
+/* Red - blocked, needs something before it can move */
+.status-blocked {
+  background-color: #fadada;
+  color: #8c2222;
+}
+
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  background-color: var(--navy);
+  color: #b9c4d4;
+  text-align: center;
+  font-size: 0.85rem;
+  padding: 1rem;
+  margin-top: 2.5rem;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+
+/* ---------- Small screens ----------
+   Under 640px the table would run off the edge, so the font and the
+   padding both shrink to keep all five columns on the screen. */
+@media (max-width: 640px) {
+
+  .grant-table th,
+  .grant-table td {
+    padding: 0.45rem 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .brand {
+    font-size: 1.6rem;
+  }
+}
